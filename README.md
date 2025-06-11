@@ -83,7 +83,7 @@ class ListUsers extends ListRecords
 {
     use HasReorderableColumns;
 
-    protected static string $view = 'filament.resources.users.pages.list-users-reorderable';
+    protected static string $view = 'filament.resources.users.pages.list-users';
 }
 ```
 
@@ -110,7 +110,7 @@ public static function table(Table $table): Table
         ->actions([
             // your actions
         ])
-        ->reorderableColumns('users-table'); // Use a unique key
+        ->reorderableColumns('users'); // Use a unique key
 }
 ```
 
@@ -154,14 +154,14 @@ Wrap it in a `div` with a `data-reorderable-columns` attribute:
 <x-filament-panels::page>
 
     {{-- Required wrapper for reordering --}}
-    <div data-reorderable-columns="users-table">
+    <div data-reorderable-columns="users">
         {{ $this->table }}
     </div>
 
 </x-filament-panels::page>
 ```
 
-Make sure the value (`users-table`) matches the key passed in `->reorderableColumns()`.
+Make sure the value (`users`) matches the key passed in `->reorderableColumns()`.
 
 ---
 
