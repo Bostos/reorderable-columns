@@ -2,24 +2,24 @@
 
 namespace Bostos\FilamentReorderableColumns;
 
+use Bostos\FilamentReorderableColumns\Commands\FilamentReorderableColumnsCommand;
+use Bostos\FilamentReorderableColumns\Storage\ColumnOrderStorage;
+use Bostos\FilamentReorderableColumns\Storage\DatabaseStorage;
+use Bostos\FilamentReorderableColumns\Storage\SessionStorage;
+use Bostos\FilamentReorderableColumns\Testing\TestsFilamentReorderableColumns;
+use Filament\Facades\Filament;
 use Filament\Support\Assets\Asset;
 use Filament\Support\Assets\Css;
 use Filament\Support\Assets\Js;
 use Filament\Support\Facades\FilamentAsset;
 use Filament\Support\Facades\FilamentIcon;
+use Filament\Tables\Table;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Filesystem\Filesystem;
 use Livewire\Features\SupportTesting\Testable;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Bostos\FilamentReorderableColumns\Commands\FilamentReorderableColumnsCommand;
-use Bostos\FilamentReorderableColumns\Testing\TestsFilamentReorderableColumns;
-use Filament\Facades\Filament;
-use Illuminate\Contracts\Foundation\Application;
-use Bostos\FilamentReorderableColumns\Storage\ColumnOrderStorage;
-use Bostos\FilamentReorderableColumns\Storage\DatabaseStorage;
-use Bostos\FilamentReorderableColumns\Storage\SessionStorage;
-use Filament\Tables\Table;
 
 class FilamentReorderableColumnsServiceProvider extends PackageServiceProvider
 {
@@ -70,8 +70,8 @@ class FilamentReorderableColumnsServiceProvider extends PackageServiceProvider
             $driver = $plugin->getStorageDriver();
 
             return match ($driver) {
-                'session' => new SessionStorage(),
-                default => new DatabaseStorage(),
+                'session' => new SessionStorage,
+                default => new DatabaseStorage,
             };
         });
     }
@@ -112,7 +112,7 @@ class FilamentReorderableColumnsServiceProvider extends PackageServiceProvider
             }
 
             $allColumns = $this->getColumns();
-            $columnsByName = collect($allColumns)->keyBy(fn($column) => $column->getName());
+            $columnsByName = collect($allColumns)->keyBy(fn ($column) => $column->getName());
             $sortedColumns = [];
 
             foreach ($storedOrder as $columnName) {

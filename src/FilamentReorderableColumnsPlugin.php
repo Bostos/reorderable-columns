@@ -32,12 +32,14 @@ class FilamentReorderableColumnsPlugin implements Plugin
     public function persistToSession(): static
     {
         $this->storageDriver = 'session';
+
         return $this;
     }
 
     public function persistToDatabase(): static
     {
         $this->storageDriver = 'database';
+
         return $this;
     }
 

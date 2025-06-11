@@ -15,10 +15,10 @@ trait HasReorderableColumns
 
             /** @var Table $table */
             $table = $this->getTable();
-            $oldFullOrder = collect($table->getColumns())->map(fn($column) => $column->getName())->toArray();
+            $oldFullOrder = collect($table->getColumns())->map(fn ($column) => $column->getName())->toArray();
         }
 
-        $newVisibleOrder = array_filter($newVisibleOrder, fn($value) => is_string($value) && $value !== '');
+        $newVisibleOrder = array_filter($newVisibleOrder, fn ($value) => is_string($value) && $value !== '');
 
         $visibleColumnsMap = array_flip($newVisibleOrder);
 
@@ -27,7 +27,7 @@ trait HasReorderableColumns
 
         foreach ($oldFullOrder as $columnName) {
             if (isset($visibleColumnsMap[$columnName])) {
-                if (!empty($visibleColumnsToInsert)) {
+                if (! empty($visibleColumnsToInsert)) {
                     array_push($result, ...$visibleColumnsToInsert);
                     $visibleColumnsToInsert = [];
                 }
@@ -36,7 +36,7 @@ trait HasReorderableColumns
             }
         }
 
-        if (!empty($visibleColumnsToInsert)) {
+        if (! empty($visibleColumnsToInsert)) {
             array_push($result, ...$visibleColumnsToInsert);
         }
 
