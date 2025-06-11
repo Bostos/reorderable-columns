@@ -153,13 +153,13 @@ Make sure the value (`users-table`) matches the key passed in `->reorderableColu
 
 ## 📝 Changelog
 
-Please refer to the [CHANGELOG](https://github.com/bostos/filament-reorderable-columns/blob/main/CHANGELOG.md) for details on recent changes.
+Please refer to the [CHANGELOG](https://github.com/bostos/filament-reorderable-columns/CHANGELOG.md) for details on recent changes.
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please see the [CONTRIBUTING](https://github.com/bostos/filament-reorderable-columns/blob/main/CONTRIBUTING.md) guide for details.
+Contributions are welcome! Please see the [CONTRIBUTING](https://github.com/bostos/filament-reorderable-columns/CONTRIBUTING.md) guide for details.
 
 ---
 
