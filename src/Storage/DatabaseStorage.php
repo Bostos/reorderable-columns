@@ -10,6 +10,7 @@ class DatabaseStorage implements ColumnOrderStorage
     public function get(string $tableId): ?array
     {
         $model = $this->getModel();
+
         return $model->query()
             ->where('user_id', Auth::id())
             ->where('table_id', $tableId)
@@ -27,9 +28,12 @@ class DatabaseStorage implements ColumnOrderStorage
 
     protected function getModel(): Model
     {
-        return new class extends Model {
+        return new class extends Model
+        {
             protected $table = 'column_orders';
+
             protected $guarded = [];
+
             protected $casts = ['order' => 'array'];
         };
     }
