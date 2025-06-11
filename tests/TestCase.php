@@ -1,10 +1,10 @@
 <?php
 
-namespace Bostos\FilamentReorderableColumns\Tests;
+namespace Bostos\ReorderableColumns\Tests;
 
 use BladeUI\Heroicons\BladeHeroiconsServiceProvider;
 use BladeUI\Icons\BladeIconsServiceProvider;
-use Bostos\FilamentReorderableColumns\FilamentReorderableColumnsServiceProvider;
+use Bostos\ReorderableColumns\ReorderableColumnsServiceProvider;
 use Filament\Actions\ActionsServiceProvider;
 use Filament\FilamentServiceProvider;
 use Filament\Forms\FormsServiceProvider;
@@ -25,7 +25,7 @@ class TestCase extends Orchestra
         parent::setUp();
 
         Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'Bostos\\FilamentReorderableColumns\\Database\\Factories\\' . class_basename($modelName) . 'Factory'
+            fn (string $modelName) => 'Bostos\\ReorderableColumns\\Database\\Factories\\' . class_basename($modelName) . 'Factory'
         );
     }
 
@@ -44,7 +44,7 @@ class TestCase extends Orchestra
             SupportServiceProvider::class,
             TablesServiceProvider::class,
             WidgetsServiceProvider::class,
-            FilamentReorderableColumnsServiceProvider::class,
+            ReorderableColumnsServiceProvider::class,
         ];
     }
 
@@ -53,7 +53,7 @@ class TestCase extends Orchestra
         config()->set('database.default', 'testing');
 
         /*
-        $migration = include __DIR__.'/../database/migrations/create_filament-reorderable-columns_table.php.stub';
+        $migration = include __DIR__.'/../database/migrations/create_reorderable-columns_table.php.stub';
         $migration->up();
         */
     }

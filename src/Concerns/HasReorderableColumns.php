@@ -1,8 +1,8 @@
 <?php
 
-namespace Bostos\FilamentReorderableColumns\Concerns;
+namespace BostosReorderableColumns\Concerns;
 
-use Bostos\FilamentReorderableColumns\Storage\ColumnOrderStorage;
+use Bostos\ReorderableColumns\Storage\ColumnOrderStorage;
 
 trait HasReorderableColumns
 {

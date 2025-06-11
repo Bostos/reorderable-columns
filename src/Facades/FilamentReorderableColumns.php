@@ -1,16 +1,16 @@
 <?php
 
-namespace Bostos\FilamentReorderableColumns\Facades;
+namespace Bostos\ReorderableColumns\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \Bostos\FilamentReorderableColumns\FilamentReorderableColumns
+ * @see \Bostos\ReorderableColumns\ReorderableColumns
  */
-class FilamentReorderableColumns extends Facade
+class ReorderableColumns extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return FilamentReorderableColumns::class;
+        return ReorderableColumns::class;
     }
 }

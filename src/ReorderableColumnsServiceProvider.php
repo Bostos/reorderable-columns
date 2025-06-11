@@ -1,12 +1,12 @@
 <?php
 
-namespace Bostos\FilamentReorderableColumns;
+namespace Bostos\ReorderableColumns;
 
-use Bostos\FilamentReorderableColumns\Commands\FilamentReorderableColumnsCommand;
-use Bostos\FilamentReorderableColumns\Storage\ColumnOrderStorage;
-use Bostos\FilamentReorderableColumns\Storage\DatabaseStorage;
-use Bostos\FilamentReorderableColumns\Storage\SessionStorage;
-use Bostos\FilamentReorderableColumns\Testing\TestsFilamentReorderableColumns;
+use Bostos\ReorderableColumns\Commands\ReorderableColumnsCommand;
+use Bostos\ReorderableColumns\Storage\ColumnOrderStorage;
+use Bostos\ReorderableColumns\Storage\DatabaseStorage;
+use Bostos\ReorderableColumns\Storage\SessionStorage;
+use Bostos\ReorderableColumns\Testing\TestsReorderableColumns;
 use Filament\Facades\Filament;
 use Filament\Support\Assets\Asset;
 use Filament\Support\Assets\Css;
@@ -21,11 +21,11 @@ use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
-class FilamentReorderableColumnsServiceProvider extends PackageServiceProvider
+class ReorderableColumnsServiceProvider extends PackageServiceProvider
 {
-    public static string $name = 'filament-reorderable-columns';
+    public static string $name = 'reorderable-columns';
 
-    public static string $viewNamespace = 'filament-reorderable-columns';
+    public static string $viewNamespace = 'reorderable-columns';
 
     public function configurePackage(Package $package): void
     {
@@ -36,7 +36,7 @@ class FilamentReorderableColumnsServiceProvider extends PackageServiceProvider
                     ->publishConfigFile()
                     ->publishMigrations()
                     ->askToRunMigrations()
-                    ->askToStarRepoOnGitHub('bostos/filament-reorderable-columns');
+                    ->askToStarRepoOnGitHub('bostos/reorderable-columns');
             });
 
         $configFileName = $package->shortName();
@@ -93,13 +93,13 @@ class FilamentReorderableColumnsServiceProvider extends PackageServiceProvider
         if (app()->runningInConsole()) {
             foreach (app(Filesystem::class)->files(__DIR__ . '/../stubs/') as $file) {
                 $this->publishes([
-                    $file->getRealPath() => base_path("stubs/filament-reorderable-columns/{$file->getFilename()}"),
-                ], 'filament-reorderable-columns-stubs');
+                    $file->getRealPath() => base_path("stubs/reorderable-columns/{$file->getFilename()}"),
+                ], 'reorderable-columns-stubs');
             }
         }
 
         // Testing
-        Testable::mixin(new TestsFilamentReorderableColumns);
+        Testable::mixin(new TestsReorderableColumns);
 
         Table::macro('reorderableColumns', function (string $tableId) {
 
@@ -131,7 +131,7 @@ class FilamentReorderableColumnsServiceProvider extends PackageServiceProvider
 
     protected function getAssetPackageName(): ?string
     {
-        return 'bostos/filament-reorderable-columns';
+        return 'bostos/reorderable-columns';
     }
 
     /**
@@ -140,8 +140,8 @@ class FilamentReorderableColumnsServiceProvider extends PackageServiceProvider
     protected function getAssets(): array
     {
         return [
-            Css::make('filament-reorderable-columns-styles', __DIR__ . '/../resources/dist/filament-reorderable-columns.css'),
-            Js::make('filament-reorderable-columns-scripts', __DIR__ . '/../resources/dist/filament-reorderable-columns.js'),
+            Css::make('reorderable-columns-styles', __DIR__ . '/../resources/dist/reorderable-columns.css'),
+            Js::make('reorderable-columns-scripts', __DIR__ . '/../resources/dist/reorderable-columns.js'),
         ];
     }
 
@@ -151,7 +151,7 @@ class FilamentReorderableColumnsServiceProvider extends PackageServiceProvider
     protected function getCommands(): array
     {
         return [
-            FilamentReorderableColumnsCommand::class,
+            ReorderableColumnsCommand::class,
         ];
     }
 

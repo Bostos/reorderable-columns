@@ -1,10 +1,10 @@
 # Changelog
 
-All notable changes to `filament-reorderable-columns` will be documented in this file.
+All notable changes to `reorderable-columns` will be documented in this file.
 
-## Filament reorderable columns - 2025-06-11
+## Reorderable columns - 2025-06-11
 
-**Filament Reorderable Columns** is [Filament](https://filamentphp.com/) plugin that allows users to reorder table columns via drag-and-drop. The new column order can be saved either in the session or persisted in the database (per user).
+**Reorderable Columns** is [Filament](https://filamentphp.com/) plugin that allows users to reorder table columns via drag-and-drop. The new column order can be saved either in the session or persisted in the database (per user).
 
 
 ---

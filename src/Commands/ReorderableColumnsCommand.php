@@ -1,12 +1,12 @@
 <?php
 
-namespace Bostos\FilamentReorderableColumns\Commands;
+namespace Bostos\ReorderableColumns\Commands;
 
 use Illuminate\Console\Command;
 
-class FilamentReorderableColumnsCommand extends Command
+class ReorderableColumnsCommand extends Command
 {
-    public $signature = 'filament-reorderable-columns';
+    public $signature = 'reorderable-columns';
 
     public $description = 'My command';
 

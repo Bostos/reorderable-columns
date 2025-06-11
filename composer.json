@@ -1,17 +1,17 @@
 {
-    "name": "bostos/filament-reorderable-columns",
-    "description": "This is my package filament-reorderable-columns",
+    "name": "bostos/reorderable-columns",
+    "description": "This is my package reorderable-columns",
     "keywords": [
         "Bostos",
         "laravel",
         "filament",
         "filament-tables",
-        "filament-reorderable-columns"
+        "reorderable-columns"
     ],
-    "homepage": "https://github.com/bostos/filament-reorderable-columns",
+    "homepage": "https://github.com/bostos/reorderable-columns",
     "support": {
-        "issues": "https://github.com/bostos/filament-reorderable-columns/issues",
-        "source": "https://github.com/bostos/filament-reorderable-columns"
+        "issues": "https://github.com/bostos/reorderable-columns/issues",
+        "source": "https://github.com/bostos/reorderable-columns"
     },
     "license": "MIT",
     "authors": [
@@ -41,13 +41,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Bostos\\FilamentReorderableColumns\\": "src/",
-            "Bostos\\FilamentReorderableColumns\\Database\\Factories\\": "database/factories/"
+            "Bostos\\ReorderableColumns\\": "src/",
+            "Bostos\\ReorderableColumns\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Bostos\\FilamentReorderableColumns\\Tests\\": "tests/"
+            "Bostos\\ReorderableColumns\\Tests\\": "tests/"
         }
     },
     "scripts": {
@@ -67,10 +67,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Bostos\\FilamentReorderableColumns\\FilamentReorderableColumnsServiceProvider"
+                "Bostos\\ReorderableColumns\\ReorderableColumnsServiceProvider"
             ],
             "aliases": {
-                "FilamentReorderableColumns": "Bostos\\FilamentReorderableColumns\\Facades\\FilamentReorderableColumns"
+                "ReorderableColumns": "Bostos\\ReorderableColumns\\Facades\\ReorderableColumns"
             }
         }
     },

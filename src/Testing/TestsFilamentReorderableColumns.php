@@ -1,13 +1,13 @@
 <?php
 
-namespace Bostos\FilamentReorderableColumns\Testing;
+namespace Bostos\ReorderableColumns\Testing;
 
 use Livewire\Features\SupportTesting\Testable;
 
 /**
  * @mixin Testable
  */
-class TestsFilamentReorderableColumns
+class TestsReorderableColumns
 {
     //
 }

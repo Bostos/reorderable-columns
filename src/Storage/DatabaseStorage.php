@@ -1,6 +1,6 @@
 <?php
 
-namespace Bostos\FilamentReorderableColumns\Storage;
+namespace Bostos\ReorderableColumns\Storage;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;

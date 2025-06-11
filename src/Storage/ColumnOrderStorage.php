@@ -1,6 +1,6 @@
 <?php
 
-namespace Bostos\FilamentReorderableColumns\Storage;
+namespace Bostos\ReorderableColumns\Storage;
 
 interface ColumnOrderStorage
 {

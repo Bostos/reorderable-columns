@@ -1,11 +1,11 @@
-# Filament Reorderable Columns
+# Reorderable Columns
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/bostos/filament-reorderable-columns.svg?style=flat-square)](https://packagist.org/packages/bostos/filament-reorderable-columns)
-[![Total Downloads](https://img.shields.io/packagist/dt/bostos/filament-reorderable-columns.svg?style=flat-square)](https://packagist.org/packages/bostos/filament-reorderable-columns)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/bostos/reorderable-columns.svg?style=flat-square)](https://packagist.org/packages/bostos/reorderable-columns)
+[![Total Downloads](https://img.shields.io/packagist/dt/bostos/reorderable-columns.svg?style=flat-square)](https://packagist.org/packages/bostos/reorderable-columns)
 
-**Filament Reorderable Columns** is a plugin for [Filament](https://filamentphp.com/) that allows users to reorder table columns via drag-and-drop. The new column order can be saved either in the session or persisted in the database (per user).
+**Reorderable Columns** is a plugin for [Filament](https://filamentphp.com/) that allows users to reorder table columns via drag-and-drop. The new column order can be saved either in the session or persisted in the database (per user).
 
-![Filament Reorderable Columns Demo](https://s14.gifyu.com/images/bx5MZ.gif)
+![Reorderable Columns Demo](https://s14.gifyu.com/images/bx5MZ.gif)
 
 ---
 
@@ -28,20 +28,20 @@
 Install the package via Composer:
 
 ```bash
-composer require bostos/filament-reorderable-columns
+composer require bostos/reorderable-columns
 ```
 
-Then, publish and run the migrations to create the `filament_reorderable_columns_orders` table:
+Then, publish and run the migrations to create the `reorderable_columns_orders` table:
 
 ```bash
-php artisan vendor:publish --tag="filament-reorderable-columns-migrations"
+php artisan vendor:publish --tag="reorderable-columns-migrations"
 php artisan migrate
 ```
 
 Optionally, publish the configuration file:
 
 ```bash
-php artisan vendor:publish --tag="filament-reorderable-columns-config"
+php artisan vendor:publish --tag="reorderable-columns-config"
 ```
 
 ---
@@ -56,14 +56,14 @@ In your `AdminPanelProvider.php` (or another panel provider), register the plugi
 - `persistToDatabase()` – Persists per-user column order in the database.
 
 ```php
-use Bostos\FilamentReorderableColumns\FilamentReorderableColumnsPlugin;
+use Bostos\ReorderableColumns\ReorderableColumnsPlugin;
 
 public function panel(Panel $panel): Panel
 {
     return $panel
         // ... other configurations
         ->plugin(
-            FilamentReorderableColumnsPlugin::make()
+            ReorderableColumnsPlugin::make()
                 ->persistToSession() // or ->persistToDatabase()
         );
 }
@@ -76,7 +76,7 @@ public function panel(Panel $panel): Panel
 In your ListRecords page class (e.g. `app/Filament/Resources/UserResource/Pages/ListUsers.php`), use the `HasReorderableColumns` trait and override the `$view` property.
 
 ```php
-use Bostos\FilamentReorderableColumns\Concerns\HasReorderableColumns;
+use Bostos\ReorderableColumns\Concerns\HasReorderableColumns;
 use Filament\Resources\Pages\ListRecords;
 
 class ListUsers extends ListRecords
@@ -167,13 +167,13 @@ Make sure the value (`users`) matches the key passed in `->reorderableColumns()`
 
 ## 📝 Changelog
 
-Please refer to the [CHANGELOG](https://github.com/bostos/filament-reorderable-columns/blob/main/CHANGELOG.md) for details on recent changes.
+Please refer to the [CHANGELOG](https://github.com/bostos/reorderable-columns/blob/main/CHANGELOG.md) for details on recent changes.
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please see the [CONTRIBUTING](https://github.com/bostos/filament-reorderable-columns/blob/main/CONTRIBUTING.md) guide for details.
+Contributions are welcome! Please see the [CONTRIBUTING](https://github.com/bostos/reorderable-columns/blob/main/CONTRIBUTING.md) guide for details.
 
 ---
 
@@ -191,4 +191,4 @@ If you discover a security vulnerability within this package, please send an e-m
 
 ## ⚖️ License
 
-The MIT License (MIT). See the [LICENSE](https://github.com/bostos/filament-reorderable-columns/blob/main/LICENSE) file for more details.
+The MIT License (MIT). See the [LICENSE](https://github.com/bostos/reorderable-columns/blob/main/LICENSE) file for more details.

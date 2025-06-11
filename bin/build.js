@@ -46,5 +46,5 @@ const defaultOptions = {
 compile({
     ...defaultOptions,
     entryPoints: ['./resources/js/index.js'],
-    outfile: './resources/dist/filament-reorderable-columns.js',
+    outfile: './resources/dist/reorderable-columns.js',
 })

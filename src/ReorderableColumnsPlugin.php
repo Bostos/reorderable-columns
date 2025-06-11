@@ -1,11 +1,11 @@
 <?php
 
-namespace Bostos\FilamentReorderableColumns;
+namespace Bostos\ReorderableColumns;
 
 use Filament\Contracts\Plugin;
 use Filament\Panel;
 
-class FilamentReorderableColumnsPlugin implements Plugin
+class ReorderableColumnsPlugin implements Plugin
 {
     protected string $storageDriver = 'session';
 
