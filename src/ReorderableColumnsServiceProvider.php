@@ -64,7 +64,7 @@ class ReorderableColumnsServiceProvider extends PackageServiceProvider
 
         $this->app->singleton(ColumnOrderStorage::class, function (Application $app) {
 
-            /** @var FilamentReorderableColumnsPlugin $plugin */
+            /** @var ReorderableColumnsPlugin $plugin */
             $plugin = Filament::getCurrentPanel()->getPlugin('reorderable-columns');
 
             $driver = $plugin->getStorageDriver();
