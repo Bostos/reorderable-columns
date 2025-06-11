@@ -165,14 +165,13 @@ Contributions are welcome! Please see the [CONTRIBUTING](https://github.com/bost
 
 ## 🔐 Security
 
-If you discover any security issues, please refer to our [security policy](https://github.com/bostos/filament-reorderable-columns/security/policy).
+If you discover a security vulnerability within this package, please send an e-mail to <nikolast_metal@hotmail.com>. All security vulnerabilities will be promptly addressed.
 
 ---
 
 ## 🧠 Credits
 
 - [Bostos](https://github.com/bostos)
-- All [Contributors](https://github.com/bostos/filament-reorderable-columns/graphs/contributors)
 
 ---
 
