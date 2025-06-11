@@ -1,6 +1,6 @@
 <?php
 
-namespace BostosReorderableColumns\Concerns;
+namespace Bostos\ReorderableColumns\Concerns;
 
 use Bostos\ReorderableColumns\Storage\ColumnOrderStorage;
 
