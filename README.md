@@ -5,7 +5,21 @@
 
 **Filament Reorderable Columns** is a plugin for [Filament](https://filamentphp.com/) that allows users to reorder table columns via drag-and-drop. The new column order can be saved either in the session or persisted in the database (per user).
 
-This plugin improves user experience by enabling customization of table layouts, boosting both productivity and satisfaction.
+---
+
+## Features
+
+- **Intuitive Drag & Drop:** Easily reorder table columns to create your preferred layout.
+- **Persistent Ordering:** Column order is saved and automatically reapplied on next visit.
+- **Flexible Storage Drivers:**
+  - **Database:** Persist layouts per-user, so everyone gets their own custom view.
+  - **Session:** Keep the layout for the current session, resetting on logout.
+- **Seamless Integration:** Designed to feel like a native Filament feature.
+- **Smart Column Handling:**
+  - Remembers the order of visible columns.
+  - Intelligently handles hidden columns, preserving their state.
+  - Automatically places newly added columns at the end of the table.
+- **Lightweight & Performant:** Minimal footprint with clean JavaScript and efficient server-side logic.
 
 ---
 
