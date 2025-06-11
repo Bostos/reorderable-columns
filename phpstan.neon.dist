@@ -1,14 +1,19 @@
 includes:
-    - phpstan-baseline.neon
+    - ./vendor/nunomaduro/larastan/extension.neon
 
 parameters:
-    level: 4
+    level: 6
     paths:
         - src
-        - config
-        - database
-    tmpDir: build/phpstan
-    checkOctaneCompatibility: true
-    checkModelProperties: true
-    checkMissingIterableValueType: false
+        - tests
 
+    bootstrapFiles:
+        - vendor/orchestra/testbench-core/laravel/bootstrap/app.php
+
+    larastan:
+        app_path: vendor/orchestra/testbench-core/laravel/app
+        config_path: vendor/filament/filament/config/filament.php
+
+    ignoreErrors:
+        -
+            identifier: missingType.iterableValue
