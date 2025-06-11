@@ -1,28 +1,28 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "bostos/filament-reorderable-columns",
+    "description": "This is my package filament-reorderable-columns",
     "keywords": [
-        ":vendor_name",
+        "Bostos",
         "laravel",
-        ":package_slug"
+        "filament",
+        "filament-tables",
+        "filament-reorderable-columns"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/bostos/filament-reorderable-columns",
     "support": {
-        "issues": "https://github.com/:vendor_slug/:package_slug/issues",
-        "source": "https://github.com/:vendor_slug/:package_slug"
+        "issues": "https://github.com/bostos/filament-reorderable-columns/issues",
+        "source": "https://github.com/bostos/filament-reorderable-columns"
     },
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
-            "role": "Developer"
+            "name": "Bostos",
+            "email": "nikolast_metal@hotmail.com",
+            "role": "PHP Developer"
         }
     ],
     "require": {
         "php": "^8.1",
-        "filament/filament": "^3.0",
-        "filament/forms": "^3.0",
         "filament/tables": "^3.0",
         "spatie/laravel-package-tools": "^1.15.0"
     },
@@ -41,13 +41,13 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src/",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories/"
+            "Bostos\\FilamentReorderableColumns\\": "src/",
+            "Bostos\\FilamentReorderableColumns\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests/"
+            "Bostos\\FilamentReorderableColumns\\Tests\\": "tests/"
         }
     },
     "scripts": {
@@ -67,10 +67,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "Bostos\\FilamentReorderableColumns\\FilamentReorderableColumnsServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
+                "FilamentReorderableColumns": "Bostos\\FilamentReorderableColumns\\Facades\\FilamentReorderableColumns"
             }
         }
     },

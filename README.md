@@ -1,86 +1,181 @@
-# :package_description
+# Filament Reorderable Columns
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/:vendor_slug/:package_slug/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/:vendor_slug/:package_slug/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/:vendor_slug/:package_slug/fix-php-code-styling.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/:vendor_slug/:package_slug/actions?query=workflow%3A"Fix+PHP+code+styling"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/bostos/filament-reorderable-columns.svg?style=flat-square)](https://packagist.org/packages/bostos/filament-reorderable-columns)
+[![Total Downloads](https://img.shields.io/packagist/dt/bostos/filament-reorderable-columns.svg?style=flat-square)](https://packagist.org/packages/bostos/filament-reorderable-columns)
 
-<!--delete-->
+**Filament Reorderable Columns** is a plugin for [Filament](https://filamentphp.com/) that allows users to reorder table columns via drag-and-drop. The new column order can be saved either in the session or persisted in the database (per user).
+
+This plugin improves user experience by enabling customization of table layouts, boosting both productivity and satisfaction.
+
 ---
-This repo can be used to scaffold a Filament plugin. Follow these steps to get started:
 
-1. Press the "Use this template" button at the top of this repo to create a new repo with the contents of this skeleton.
-2. Run "php ./configure.php" to run a script that will replace all placeholders throughout all the files.
-3. Make something great!
----
-<!--/delete-->
+## 📦 Installation
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
-
-## Installation
-
-You can install the package via composer:
+Install the package via Composer:
 
 ```bash
-composer require :vendor_slug/:package_slug
+composer require bostos/filament-reorderable-columns
 ```
 
-You can publish and run the migrations with:
+Then, publish and run the migrations to create the `filament_reorderable_columns_orders` table:
 
 ```bash
-php artisan vendor:publish --tag=":package_slug-migrations"
+php artisan vendor:publish --tag="filament-reorderable-columns-migrations"
 php artisan migrate
 ```
 
-You can publish the config file with:
+Optionally, publish the configuration file:
 
 ```bash
-php artisan vendor:publish --tag=":package_slug-config"
+php artisan vendor:publish --tag="filament-reorderable-columns-config"
 ```
 
-Optionally, you can publish the views using
+---
 
-```bash
-php artisan vendor:publish --tag=":package_slug-views"
-```
+## ⚙️ Usage
 
-This is the contents of the published config file:
+### Step 1: Register the Plugin in Your Panel Provider
+
+In your `AdminPanelProvider.php` (or another panel provider), register the plugin inside the `panel()` method. You can choose the persistence strategy:
+
+- `persistToSession()` *(default)* – Saves order in the session (lost on logout).
+- `persistToDatabase()` – Persists per-user column order in the database.
 
 ```php
-return [
-];
+use Bostos\FilamentReorderableColumns\FilamentReorderableColumnsPlugin;
+
+public function panel(Panel $panel): Panel
+{
+    return $panel
+        // ... other configurations
+        ->plugin(
+            FilamentReorderableColumnsPlugin::make()
+                ->persistToSession() // or ->persistToDatabase()
+        );
+}
 ```
 
-## Usage
+---
+
+### Step 2: Use the Trait in Your ListRecords Page
+
+In your ListRecords page class (e.g. `app/Filament/Resources/UserResource/Pages/ListUsers.php`), use the `HasReorderableColumns` trait and override the `$view` property.
 
 ```php
-$variable = new VendorName\Skeleton();
-echo $variable->echoPhrase('Hello, VendorName!');
+use Bostos\FilamentReorderableColumns\Concerns\HasReorderableColumns;
+use Filament\Resources\Pages\ListRecords;
+
+class ListUsers extends ListRecords
+{
+    use HasReorderableColumns;
+
+    protected static string $view = 'filament.resources.users.pages.list-users-reorderable';
+}
 ```
 
-## Testing
+> 💡 Don't forget to create the custom view in Step 4.
 
-```bash
-composer test
+---
+
+### Step 3: Enable Reordering on Your Table
+
+In your resource file (e.g. `UserResource.php`), chain the `->reorderableColumns()` method to your table definition. Provide a unique key (usually table or model name).
+
+```php
+use Filament\Tables\Table;
+
+public static function table(Table $table): Table
+{
+    return $table
+        ->columns([
+            // your columns
+        ])
+        ->filters([
+            // your filters
+        ])
+        ->actions([
+            // your actions
+        ])
+        ->reorderableColumns('users-table'); // Use a unique key
+}
 ```
 
-## Changelog
+---
 
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+### Step 4: Create a Custom Blade View
 
-## Contributing
+Since Filament’s table component doesn’t allow custom HTML attributes on the outer wrapper, you’ll need to override the view and wrap the table manually.
 
-Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
+#### 1. Create a custom view file
 
-## Security Vulnerabilities
+At the path defined in Step 2, create:
 
-Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
+```
+resources/views/filament/resources/users/pages/list-users-reorderable.blade.php
+```
 
-## Credits
+#### 2. Copy the original view content
 
-- [:author_name](https://github.com/:author_username)
-- [All Contributors](../../contributors)
+Copy the content from:
 
-## License
+```
+vendor/filament/filament/resources/views/resources/pages/list-records.blade.php
+```
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+Paste it into your custom Blade file.
+
+#### 3. Wrap the table
+
+Locate the line:
+
+```blade
+{{ $this->table }}
+```
+
+Wrap it in a `div` with a `data-reorderable-columns` attribute:
+
+```blade
+{{-- resources/views/filament/resources/users/pages/list-users-reorderable.blade.php --}}
+
+<x-filament-panels::page>
+
+    {{-- Required wrapper for reordering --}}
+    <div data-reorderable-columns="users-table">
+        {{ $this->table }}
+    </div>
+
+</x-filament-panels::page>
+```
+
+Make sure the value (`users-table`) matches the key passed in `->reorderableColumns()`.
+
+---
+
+## 📝 Changelog
+
+Please refer to the [CHANGELOG](https://github.com/bostos/filament-reorderable-columns/blob/main/CHANGELOG.md) for details on recent changes.
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please see the [CONTRIBUTING](https://github.com/bostos/filament-reorderable-columns/blob/main/CONTRIBUTING.md) guide for details.
+
+---
+
+## 🔐 Security
+
+If you discover any security issues, please refer to our [security policy](https://github.com/bostos/filament-reorderable-columns/security/policy).
+
+---
+
+## 🧠 Credits
+
+- [Bostos](https://github.com/bostos)
+- All [Contributors](https://github.com/bostos/filament-reorderable-columns/graphs/contributors)
+
+---
+
+## ⚖️ License
+
+The MIT License (MIT). See the [LICENSE](https://github.com/bostos/filament-reorderable-columns/blob/main/LICENSE) file for more details.

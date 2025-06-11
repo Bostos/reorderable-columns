@@ -1,0 +1,13 @@
+.reorderable-ghost {
+    opacity: 0.5;
+    @apply bg-gray-200 dark:bg-gray-700;
+}
+
+[data-reorderable-columns] thead tr th {
+    cursor: grab;
+    position: relative;
+}
+
+[data-reorderable-columns] thead tr th:active {
+    cursor: grabbing;
+}

@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Bostos\FilamentReorderableColumns\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class FilamentReorderableColumnsCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'filament-reorderable-columns';
 
     public $description = 'My command';
 
