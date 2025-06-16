@@ -71,7 +71,8 @@ class ReorderableColumnsServiceProvider extends PackageServiceProvider
 
             return match ($driver) {
                 'session' => new SessionStorage,
-                default => new DatabaseStorage,
+                'database' => new DatabaseStorage,
+                default => new SessionStorage	
             };
         });
     }

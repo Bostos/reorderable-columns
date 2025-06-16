@@ -19,6 +19,17 @@ function initSortable(element, tableId) {
                     })
                     .filter(Boolean);
 
+                const item = evt.item;
+                const parent = evt.from;
+
+                parent.removeChild(item);
+
+                if (evt.oldDraggableIndex < parent.children.length) {
+                    parent.insertBefore(item, parent.children[evt.oldDraggableIndex]);
+                } else {
+                    parent.appendChild(item);
+                }
+
                 const livewireComponent = window.Livewire.find(element.closest('[wire\\:id]').getAttribute('wire:id'));
 
                 if (livewireComponent && newOrder.length > 0) {
